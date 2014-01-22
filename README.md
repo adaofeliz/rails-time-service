@@ -1,4 +1,4 @@
-rails-time-rest-service
+Rails Time - Train Simulator
 =======================
 
-Rails Time - Train Simulator
+
