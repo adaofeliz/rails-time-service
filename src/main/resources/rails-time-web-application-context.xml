@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task-3.0.xsd
+       http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.1.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven />
+
+    <context:component-scan base-package="com.adaofeliz.railstime.*" />
+
+    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:rails-time-web.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="properties" ref="configProperties" />
+    </bean>
+
+    <import resource="mvc-dispatcher-servlet.xml" />
+
+
+    <task:annotation-driven scheduler="taskScheduler"/>
+    <task:scheduler id="taskScheduler" pool-size="10"/>
+
+    <!-- Factory bean that creates the Mongo instance -->
+    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+        <property name="host" value="${db.host}" />
+        <property name="port" value='${db.port}' />
+    </bean>
+
+    <!-- MongoTemplate for connecting and quering the documents in the database -->
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongo" ref="mongo" />
+        <constructor-arg name="databaseName" value="${db.name}" />
+        <!--<constructor-arg name="userCredentials" ref="mongoCredentials"/>-->
+    </bean>
+
+    <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
+        <constructor-arg name="username" value="${db.username}" />
+        <constructor-arg name="password" value="{db.password}" />
+    </bean>
+
+    <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+    <mvc:interceptors>
+        <bean class="com.adaofeliz.railstime.interceptor.UserContextInterceptor"/>
+    </mvc:interceptors>
+
+</beans>
