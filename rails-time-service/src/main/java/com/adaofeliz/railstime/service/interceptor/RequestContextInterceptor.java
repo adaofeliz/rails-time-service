@@ -1,4 +1,4 @@
-package com.adaofeliz.railstime.interceptor;
+package com.adaofeliz.railstime.service.interceptor;
 
 /**
  * User: ADAO

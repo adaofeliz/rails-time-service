@@ -70,6 +70,33 @@
             <artifactId>freemarker</artifactId>
         </dependency>
 
+        <!-- Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <!-- Website crawler mechanize-->
+        <dependency>
+            <groupId>com.gistlabs</groupId>
+            <artifactId>mechanize</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
         <!-- Logging -->
         <dependency>
             <groupId>commons-logging</groupId>

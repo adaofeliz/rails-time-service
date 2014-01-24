@@ -1,4 +1,4 @@
-package com.adaofeliz.railstime.context;
+package com.adaofeliz.railstime.service.context;
 
 import java.util.Locale;
 import java.util.TimeZone;

@@ -60,7 +60,7 @@
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
     <mvc:interceptors>
-        <bean class="com.adaofeliz.railstime.interceptor.UserContextInterceptor"/>
+        <bean class="com.adaofeliz.railstime.service.interceptor.UserContextInterceptor"/>
     </mvc:interceptors>
 
 </beans>

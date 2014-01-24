@@ -1,6 +1,6 @@
-package com.adaofeliz.railstime.interceptor;
+package com.adaofeliz.railstime.service.interceptor;
 
-import com.adaofeliz.railstime.context.UserContext;
+import com.adaofeliz.railstime.service.context.UserContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

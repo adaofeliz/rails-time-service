@@ -96,15 +96,25 @@
     </profiles>
 
     <properties>
+        <!-- Project -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.7</jdk.version>
 
+        <!-- Spring -->
         <spring.version>4.0.0.RELEASE</spring.version>
         <spring.data-mongodb.version>1.2.3.RELEASE</spring.data-mongodb.version>
         <servlet-api.version>2.5</servlet-api.version>
 
+        <!-- Web -->
         <freemarker.version>2.3.19</freemarker.version>
 
+        <!-- Utils -->
+        <guava.version>16.0</guava.version>
+        <mechanize.version>0.11.0</mechanize.version>
+        <jackson.version>1.9.13</jackson.version>
+        <joda-time.version>2.2</joda-time.version>
+
+        <!-- Logging -->
         <commons-logging.version>1.1.1</commons-logging.version>
         <slf4j.version>1.6.1</slf4j.version>
 
@@ -171,6 +181,38 @@
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
                 <version>${freemarker.version}</version>
+            </dependency>
+
+            <!-- Guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!-- Website crawler mechanize-->
+            <dependency>
+                <groupId>com.gistlabs</groupId>
+                <artifactId>mechanize</artifactId>
+                <version>${mechanize.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-core-asl</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
             </dependency>
 
             <!-- Logging -->

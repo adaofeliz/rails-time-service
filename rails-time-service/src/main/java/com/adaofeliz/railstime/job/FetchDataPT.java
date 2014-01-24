@@ -1,9 +1,18 @@
 package com.adaofeliz.railstime.job;
 
+import com.adaofeliz.railstime.database.crud.DatabaseClient;
+import com.adaofeliz.railstime.database.dao.station.StationDao;
+import com.adaofeliz.railstime.database.dao.train.TrainDao;
+import com.adaofeliz.railstime.job.crawler.pt.refer.ReferWebsiteCrawler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * User: ADAO
@@ -17,7 +26,12 @@ public class FetchDataPT implements Runnable {
     private static int numberOfErrors = 0;
     private static String lastError = "";
 
-    @Scheduled(fixedDelay = 15000)
+    @Resource
+    private DatabaseClient databaseClient;
+    @Resource
+    private ReferWebsiteCrawler referWebsiteCrawler;
+
+    @Scheduled(fixedDelay = 1500000)
     public void run() {
 
         LOG.info("Starting FetchDataPT Job #" + numberOfErrors);
@@ -25,6 +39,84 @@ public class FetchDataPT implements Runnable {
             LOG.info("Last error: " + lastError);
         }
 
+        try {
+
+            updateStations();
+
+            updateTrains();
+
+        } catch (Exception e) {
+
+            lastError = e.getLocalizedMessage();
+            numberOfErrors++;
+
+            LOG.error(e.getMessage(), e);
+
+        }
+    }
+
+    private void updateTrains() {
+        // TRAINS
+
+        List<StationDao> stationDaoDataBase = databaseClient.getStationCollection();
+        Collections.sort(stationDaoDataBase);
+
+        for (StationDao stationDao : stationDaoDataBase) {
+            try {
+
+                List<TrainDao> trainDaoIdsList = referWebsiteCrawler.fetchTrainsIdsByStationId(stationDao.stationId);
+
+                Iterator<TrainDao> trainDaoIterator = trainDaoIdsList.iterator();
+                while (trainDaoIterator.hasNext()) {
+                    TrainDao trainDao = trainDaoIterator.next();
+                    if (databaseClient.getTrainById(trainDao.trainId) != null) {
+                        trainDaoIterator.remove();
+                        LOG.info("Train already exists in the database: " + trainDao.trainId);
+                    }
+                }
+
+                List<TrainDao> trainDaoList = referWebsiteCrawler.fetchTrainDetails(trainDaoIdsList);
+                for (TrainDao trainDao : trainDaoList) {
+                    databaseClient.insertTrain(trainDao);
+                    LOG.info("New Train : " + trainDao.trainId);
+                }
+
+            } catch (Exception e) {
+                lastError = e.getLocalizedMessage();
+                LOG.error(e.getMessage(), e);
+            }
+        }
+    }
+
+    private void updateStations() {
+        // STATIONS!
+        try {
+
+            List<StationDao> stationDaoIds = referWebsiteCrawler.fetchStationsId();
+
+            Iterator<StationDao> stationDaoIdsIterator = stationDaoIds.iterator();
+            while (stationDaoIdsIterator.hasNext()) {
+
+                StationDao stationDao = stationDaoIdsIterator.next();
+
+                if (databaseClient.getStationById(stationDao.stationId) != null) {
+                    stationDaoIdsIterator.remove();
+                    LOG.info("Station already exists in the database: " + stationDao.stationId);
+                }
+            }
+
+            for (StationDao stationDao : stationDaoIds) {
+                StationDao stationDaoNew = referWebsiteCrawler.fetchStationDetails(stationDao);
+                if (stationDaoNew != null) {
+                    databaseClient.insertStation(stationDaoNew);
+                    LOG.info("New Station: " + stationDaoNew.stationName);
+                }
+            }
+
+        } catch (Exception e) {
+            lastError = e.getLocalizedMessage();
+            LOG.error(e.getMessage(), e);
+        }
     }
 
 }

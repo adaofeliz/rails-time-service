@@ -1,4 +1,4 @@
-package com.adaofeliz.railstime.context;
+package com.adaofeliz.railstime.service.context;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

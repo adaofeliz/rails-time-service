@@ -1,4 +1,4 @@
-package com.adaofeliz.railstime.context;
+package com.adaofeliz.railstime.service.context;
 
 /**
  * User: ADAO
