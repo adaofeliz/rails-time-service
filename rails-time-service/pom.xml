@@ -111,7 +111,7 @@
     </dependencies>
 
     <build>
-        <finalName>rails-service-web</finalName>
+        <finalName>rails-time-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

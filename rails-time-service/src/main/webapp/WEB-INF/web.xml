@@ -16,7 +16,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                classpath:rails-time-web-application-context.xml
+                classpath:rails-time-service-application-context.xml
             </param-value>
         </init-param>
         <init-param>
@@ -32,7 +32,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:rails-time-web-application-context.xml</param-value>
+        <param-value>classpath:rails-time-service-application-context.xml</param-value>
     </context-param>
 
     <context-param>
