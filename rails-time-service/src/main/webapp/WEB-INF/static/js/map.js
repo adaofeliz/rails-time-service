@@ -87,7 +87,6 @@ function ExampleController ($scope, $http, $filter) {
         zoomProperty: 8,
 
         /** list of markers to put in the map */
-
         markersProperty : [],
 
         // These 2 properties will be set when clicking on the map - click event
