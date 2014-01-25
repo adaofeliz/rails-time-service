@@ -26,6 +26,6 @@
         <property name="suffix" value=".ftl" />
     </bean>
 
-    <mvc:resources order="0" mapping="/static/**" location="/static/" />
+    <mvc:resources order="0" mapping="/static/**" location="/WEB-INF/static/" />
 
 </beans>

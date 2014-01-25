@@ -12,6 +12,8 @@
 
 package com.adaofeliz.railstime.utils.geocalc;
 
+import com.adaofeliz.railstime.database.dao.station.StationDao;
+
 import static java.lang.Math.*;
 
 /**
@@ -22,6 +24,28 @@ import static java.lang.Math.*;
 public class EarthCalc {
 
     public static final double EARTH_DIAMETER = 6371.01 * 1000; //meters
+
+    /**
+     * Returns the distance between two points
+     *
+     * @param stationDaoStandPoint The stand point
+     * @param stationDaoForePoint  The fore point
+     * @return The distance, in meters
+     */
+    public static double getDistance(StationDao stationDaoStandPoint, StationDao stationDaoForePoint) {
+
+        Point standPoint = new Point(
+                new DegreeCoordinate(Double.parseDouble(stationDaoStandPoint.stationLatitude)),
+                new DegreeCoordinate(Double.parseDouble(stationDaoStandPoint.stationLongitude))
+        );
+
+        Point forePoint = new Point(
+                new DegreeCoordinate(Double.parseDouble(stationDaoForePoint.stationLatitude)),
+                new DegreeCoordinate(Double.parseDouble(stationDaoForePoint.stationLongitude))
+        );
+
+        return getDistance(standPoint, forePoint);
+    }
 
     /**
      * Returns the distance between two points

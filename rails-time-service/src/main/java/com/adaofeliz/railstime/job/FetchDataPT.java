@@ -71,14 +71,14 @@ public class FetchDataPT implements Runnable {
                     TrainDao trainDao = trainDaoIterator.next();
                     if (databaseClient.getTrainById(trainDao.trainId) != null) {
                         trainDaoIterator.remove();
-                        LOG.info("Train already exists in the database: " + trainDao.trainId);
+                        LOG.debug("Train already exists in the database: " + trainDao.trainId);
                     }
                 }
 
                 List<TrainDao> trainDaoList = referWebsiteCrawler.fetchTrainDetails(trainDaoIdsList);
                 for (TrainDao trainDao : trainDaoList) {
                     databaseClient.insertTrain(trainDao);
-                    LOG.info("New Train : " + trainDao.trainId);
+                    LOG.debug("New Train : " + trainDao.trainId);
                 }
 
             } catch (Exception e) {
@@ -101,7 +101,7 @@ public class FetchDataPT implements Runnable {
 
                 if (databaseClient.getStationById(stationDao.stationId) != null) {
                     stationDaoIdsIterator.remove();
-                    LOG.info("Station already exists in the database: " + stationDao.stationId);
+                    LOG.debug("Station already exists in the database: " + stationDao.stationId);
                 }
             }
 
@@ -109,7 +109,7 @@ public class FetchDataPT implements Runnable {
                 StationDao stationDaoNew = referWebsiteCrawler.fetchStationDetails(stationDao);
                 if (stationDaoNew != null) {
                     databaseClient.insertStation(stationDaoNew);
-                    LOG.info("New Station: " + stationDaoNew.stationName);
+                    LOG.debug("New Station: " + stationDaoNew.stationName);
                 }
             }
 

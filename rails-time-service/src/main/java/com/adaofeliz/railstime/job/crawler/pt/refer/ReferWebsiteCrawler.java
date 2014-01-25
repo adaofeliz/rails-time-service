@@ -140,7 +140,7 @@ public class ReferWebsiteCrawler {
             LOG.info("Fetching Station: " + stationRefer.nome);
 
         } catch (Exception e) {
-            LOG.error("Error fetching StationDetailsById id: " + stationId);
+            LOG.error("Error fetching StationDetailsById trainId: " + stationId);
         }
 
         return stationRefer;
@@ -203,7 +203,7 @@ public class ReferWebsiteCrawler {
                 LOG.info("No trains for Station Id: " + stationId);
             }
         } catch (Exception e) {
-            LOG.error("Error fetchTrainsByStationId id: " + stationId, e);
+            LOG.error("Error fetchTrainsByStationId trainId: " + stationId, e);
         }
 
         return trainsList;

@@ -28,12 +28,4 @@ public class StationDao implements Comparable<StationDao> {
     public int compareTo(StationDao stationDao) {
         return Integer.parseInt(stationId) - Integer.parseInt(stationDao.stationId);
     }
-
-    public String getStationLongitude() {
-        return stationLongitude;
-    }
-
-    public String getStationLatitude() {
-        return stationLatitude;
-    }
 }
