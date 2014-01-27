@@ -41,41 +41,35 @@
     <task:annotation-driven scheduler="taskScheduler"/>
     <task:scheduler id="taskScheduler" pool-size="10"/>
 
-    <!--&lt;!&ndash; Factory bean that creates the Mongo instance &ndash;&gt;-->
-    <!--<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">-->
-        <!--<property name="host" value="${db.host}" />-->
-        <!--<property name="port" value='${db.port}' />-->
-    <!--</bean>-->
-
-    <!--&lt;!&ndash; MongoTemplate for connecting and quering the documents in the database &ndash;&gt;-->
-    <!--<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">-->
-        <!--<constructor-arg name="mongo" ref="mongo" />-->
-        <!--<constructor-arg name="databaseName" value="${db.name}" />-->
-        <!--<constructor-arg name="userCredentials" ref="mongoCredentials"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">-->
-        <!--<constructor-arg name="username" value="${db.username}" />-->
-        <!--<constructor-arg name="password" value="{db.password}" />-->
-    <!--</bean>-->
-
     <!-- Factory bean that creates the Mongo instance -->
     <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-        <property name="host" value="${OPENSHIFT_MONGODB_DB_HOST}" />
-        <property name="port" value='${OPENSHIFT_MONGODB_DB_PORT}' />
+        <property name="host" value="${db.host}" />
+        <property name="port" value='${db.port}' />
     </bean>
 
     <!-- MongoTemplate for connecting and quering the documents in the database -->
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongo" ref="mongo" />
-        <constructor-arg name="databaseName" value="site" />
-        <constructor-arg name="userCredentials" ref="mongoCredentials"/>
+        <constructor-arg name="databaseName" value="${db.name}" />
     </bean>
 
-    <bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">
-        <constructor-arg name="username" value="${OPENSHIFT_MONGODB_DB_USERNAME}" />
-        <constructor-arg name="password" value="${OPENSHIFT_MONGODB_DB_PASSWORD}" />
-    </bean>
+    <!--&lt;!&ndash; Factory bean that creates the Mongo instance &ndash;&gt;-->
+    <!--<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">-->
+        <!--<property name="host" value="${OPENSHIFT_MONGODB_DB_HOST}" />-->
+        <!--<property name="port" value='${OPENSHIFT_MONGODB_DB_PORT}' />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; MongoTemplate for connecting and quering the documents in the database &ndash;&gt;-->
+    <!--<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">-->
+        <!--<constructor-arg name="mongo" ref="mongo" />-->
+        <!--<constructor-arg name="databaseName" value="site" />-->
+        <!--<constructor-arg name="userCredentials" ref="mongoCredentials"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="mongoCredentials" class="org.springframework.data.authentication.UserCredentials">-->
+        <!--<constructor-arg name="username" value="${OPENSHIFT_MONGODB_DB_USERNAME}" />-->
+        <!--<constructor-arg name="password" value="${OPENSHIFT_MONGODB_DB_PASSWORD}" />-->
+    <!--</bean>-->
 
     <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
