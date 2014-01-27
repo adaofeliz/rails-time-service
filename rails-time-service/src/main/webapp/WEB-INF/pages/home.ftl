@@ -7,8 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Rails Time</title>
-    <link rel="stylesheet" href="static/css/app.css">
-    <link rel="stylesheet" href="static/css/bootstrap.css">
+
+    <link rel="stylesheet" href="static/old/css/app.css">
+    <link rel="stylesheet" href="static/old/css/bootstrap.css">
 
     <style>
         .name{
@@ -27,6 +28,7 @@
 
     </style>
 </head>
+
 <body ng-controller="ExampleController">
 <div class="trains" >
 
@@ -60,8 +62,8 @@
 <script src="//maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
-<script src="static/lib/google-maps.js"></script>
-<script src="static/js/map.js"></script>
+<script src="static/old/lib/google-maps.js"></script>
+<script src="static/old/js/map.js"></script>
 
 </body>
 </html>

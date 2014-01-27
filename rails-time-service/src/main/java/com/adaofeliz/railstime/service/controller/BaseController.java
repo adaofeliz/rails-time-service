@@ -15,7 +15,7 @@ public class BaseController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home() {
-        return "home";
+        return "index";
     }
 
 }
