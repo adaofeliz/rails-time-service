@@ -114,7 +114,6 @@
 	</div>
 </div>
 
-
 <script src="//maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
 <script src="static/js/angular.min.js"></script>
 <script src="static/js/google-maps.js"></script>
