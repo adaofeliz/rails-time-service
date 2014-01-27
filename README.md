@@ -15,4 +15,4 @@ Application DEMO: http://site-railstime.rhcloud.com/
  - [http://site-railstime.rhcloud.com/service/train/origin/{origin}] - Return all Trains for a given Origin
 
 
-![alt tag](https://dl.dropboxusercontent.com/spa/y32fwqxnzbyqfvp/qpdmcu51.png)
+![alt tag](https://dl.dropboxusercontent.com/spa/y32fwqxnzbyqfvp/7d_es385.png)
