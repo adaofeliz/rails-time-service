@@ -237,19 +237,19 @@ public class TrainsDelegate {
 
             if (previousStationDao != null && nextStationDao != null) {
 
-                DateTimeFormatter formatter = DateTimeFormat.forPattern("HH:mm");
+                DateTimeFormatter formatter = DateTimeFormat.forPattern("HH:mm:ss");
 
                 DateTime previousStationTime =
                         formatter.parseDateTime(
-                                previousTimeStation.trainScheduleHours + ":" + previousTimeStation.trainScheduleMinutes);
+                                previousTimeStation.trainScheduleHours + ":" + previousTimeStation.trainScheduleMinutes + ":00");
 
                 DateTime nextStationTime =
                         formatter.parseDateTime(
-                                nextTimeStation.trainScheduleHours + ":" + nextTimeStation.trainScheduleMinutes);
+                                nextTimeStation.trainScheduleHours + ":" + nextTimeStation.trainScheduleMinutes + ":00");
 
                 DateTime nowTime =
                         formatter.parseDateTime(
-                                nowDateTime.hourOfDay().get() + ":" + nowDateTime.minuteOfHour().get());
+                                nowDateTime.hourOfDay().get() + ":" + nowDateTime.minuteOfHour().get() + ":" + nowDateTime.secondOfMinute().get());
 
                 Interval intervalTotal = new Interval(previousStationTime, nextStationTime); // 5m - 100
                 Interval intervalActual = new Interval(nowTime, nextStationTime); // 4m - x
