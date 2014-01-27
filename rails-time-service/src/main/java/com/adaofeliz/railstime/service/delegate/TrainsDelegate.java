@@ -254,8 +254,12 @@ public class TrainsDelegate {
                 Interval intervalTotal = new Interval(previousStationTime, nextStationTime); // 5m - 100
                 Interval intervalActual = new Interval(nowTime, nextStationTime); // 4m - x
 
-                double distancePercentage =
-                        (double) intervalActual.toPeriod().getMinutes() / (double) intervalTotal.toPeriod().getMinutes();
+                int secondsTotal =
+                        (intervalTotal.toPeriod().getMinutes() * 60) + intervalTotal.toPeriod().getSeconds();
+                int secondsActual =
+                        (intervalActual.toPeriod().getMinutes() * 60) + intervalActual.toPeriod().getSeconds();
+
+                double distancePercentage = (double) secondsActual / (double) secondsTotal;
 
                 Point standPoint = new Point(
                         new DegreeCoordinate(Double.parseDouble(previousStationDao.stationLatitude)),
@@ -276,7 +280,6 @@ public class TrainsDelegate {
 
                 trainPosition.currentLatitude = currentLocation.getLatitude();
                 trainPosition.currentLongitude = currentLocation.getLongitude();
-
 
             } else {
 
