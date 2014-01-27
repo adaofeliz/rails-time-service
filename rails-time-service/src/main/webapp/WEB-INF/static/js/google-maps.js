@@ -466,7 +466,7 @@
             
             angular.forEach(newValue, function (v, i) {
               if (!_m.hasMarker(v.trainPosition.currentLatitude, v.trainPosition.currentLongitude)) {
-                _m.addMarker(v.trainPosition.currentLatitude, v.trainPosition.currentLongitude, v.icon, v.infoWindow);
+                _m.addMarker(v.trainPosition.currentLatitude, v.trainPosition.currentLongitude, v.icon, v.trainId + " - " + v.trainName);
               }
             });
             

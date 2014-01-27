@@ -116,8 +116,7 @@
 
 
 <script src="//maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
+<script src="static/js/angular.min.js"></script>
 <script src="static/js/google-maps.js"></script>
 <script src="static/js/map.js"></script>
 
