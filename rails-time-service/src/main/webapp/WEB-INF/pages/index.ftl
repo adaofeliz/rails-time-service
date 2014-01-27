@@ -39,6 +39,14 @@
 
 <body ng-controller="RailsTimeController">
 <div class="container">
+
+    <a href="https://github.com/adaofeliz/rails-time-service" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <div class="page-header">
+        <h1 id="progress">Rails Time - Train Simulator</h1>
+    </div>
+    <p class="lead">Project Page: <a href="https://github.com/adaofeliz/rails-time-service" target="_blank">https://github.com/adaofeliz/rails-time-service</a></p>
+
 	<div class="row clearfix">
 		<div class="col-md-12 column">
             <div class="google-map"
