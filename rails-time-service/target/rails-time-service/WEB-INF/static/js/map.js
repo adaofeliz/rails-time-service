@@ -2,8 +2,9 @@
     var module = angular.module("rails-time-map-example", ["google-maps"]);
 }());
 
-function ExampleController($scope, $http, $filter) {
+function RailsTimeController($scope, $http, $filter) {
     $http.get('service/train').success(function (data) {
+
         $scope.trains = data;
         $scope.markersProperty = data;
         $scope.filteredMarkersProperty = $scope.markersProperty;
